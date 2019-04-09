@@ -17,11 +17,11 @@ class PchomeCrawler(scrapy.Spider):
         res = BeautifulSoup(response.body)
         
         for products in res.select('div.pic2')[2:]:
+            print('title :'+ products.select('a')[0].text)
+            print('shop :'+ products.select('a')[-1].text)
+            print('money :'+ products.select('.pic3')[0].text)
             pchomeItem = PchomeItem()
             pchomeItem['title'] = products.select('a')[0].text
-            pchomeItem['shop'] = products.select('a')[1].text
+            pchomeItem['shop'] = products.select('a')[-1].text
             pchomeItem['money'] = products.select('.pic3')[0].text
             yield pchomeItem
-            #print('title :'+ products.select('a')[0].text)
-            #print('shop :'+ products.select('a')[1].text)
-            #print('money :'+ products.select('.pic3')[0].text)
