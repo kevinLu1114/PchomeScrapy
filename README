@@ -1,1 +1,0 @@
-use scrapy crawl pchome -o pchom.json -t json
